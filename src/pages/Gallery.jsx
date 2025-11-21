@@ -119,6 +119,7 @@ const Gallery = () => {
   useInViewAnimation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // Removed mobile detection - use responsive CSS instead for better performance
 
   const openModal = (index) => {
     setCurrentImageIndex(index);
@@ -215,14 +216,22 @@ const Gallery = () => {
                       className="relative overflow-hidden rounded-xl bg-white ring-1 ring-brand/10 cursor-pointer transition-transform duration-300 hover:scale-105 md:rounded-2xl lg:rounded-3xl"
                       onClick={() => openModal(index)}
                     >
-                      <div className="relative aspect-[4/3] overflow-hidden">
+                      <div className="relative aspect-[4/3] overflow-hidden bg-brand/5">
                         <img
                           src={item.image}
                           alt={item.title}
                           className="h-full w-full object-cover"
-                          loading={index < 6 ? "eager" : "lazy"}
+                          loading={index < 3 ? "eager" : "lazy"}
                           decoding="async"
                           fetchPriority={index < 3 ? "high" : "low"}
+                          onError={(e) => {
+                            e.target.src = "/images/construction-premium.avif";
+                          }}
+                          onLoad={(e) => {
+                            e.target.style.opacity = "1";
+                            e.target.style.display = "block";
+                          }}
+                          style={{ display: "block", opacity: 1 }}
                         />
                       </div>
                     </figure>
@@ -290,13 +299,18 @@ const Gallery = () => {
 
           {/* Image Container */}
           <div
-            className="relative max-h-[90vh] max-w-[90vw] px-16 md:px-20"
+            className="relative max-h-[90vh] max-w-[90vw] px-12 md:px-20"
             onClick={(e) => e.stopPropagation()}
           >
             <img
               src={galleryImages[currentImageIndex].image}
               alt={galleryImages[currentImageIndex].title}
               className="max-h-[90vh] max-w-full object-contain"
+              loading="eager"
+              decoding="async"
+              onError={(e) => {
+                e.target.src = "/images/construction-premium.avif";
+              }}
             />
             
             {/* Image Info */}

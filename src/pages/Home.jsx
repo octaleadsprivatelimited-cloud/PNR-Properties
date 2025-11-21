@@ -376,15 +376,18 @@ const Home = () => {
               )}
               <div className="relative aspect-[4/3] overflow-hidden">
                 {property.image2 ? (
-                  <div className="relative h-full w-full">
+                  <div className="relative h-full w-full bg-brand/5">
                     <img
                       src={property.image}
                       alt={property.title}
                       className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
                       loading="lazy"
+                      decoding="async"
                       onError={(e) => {
-                        console.error('Image load error:', property.image);
                         e.target.src = "/images/construction-site-1.avif";
+                      }}
+                      onLoad={(e) => {
+                        e.target.style.opacity = "1";
                       }}
                     />
                     <img
@@ -392,8 +395,8 @@ const Home = () => {
                       alt={`${property.title} - Image 2`}
                       className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                       loading="lazy"
+                      decoding="async"
                       onError={(e) => {
-                        console.error('Image 2 load error:', property.image2);
                         e.target.src = "/images/construction-site-1.avif";
                       }}
                     />
@@ -404,6 +407,13 @@ const Home = () => {
                     alt={property.title}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
+                    decoding="async"
+                    onError={(e) => {
+                      e.target.src = "/images/construction-site-1.avif";
+                    }}
+                    onLoad={(e) => {
+                      e.target.style.opacity = "1";
+                    }}
                   />
                 )}
                 {property.launchingSoon && property.launchDate && (
@@ -701,15 +711,22 @@ const Home = () => {
               key={item.title}
               className="group relative overflow-hidden rounded-2xl bg-[#f8fafc] ring-1 ring-brand/10 shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-2 hover:ring-brand/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] md:rounded-3xl"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-[4/3] overflow-hidden bg-brand/5">
                 <img
                   src={item.image}
                   alt={item.title}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          loading="lazy"
+                  loading="lazy"
                   decoding="async"
                   fetchPriority="low"
-                        />
+                  onError={(e) => {
+                    e.target.src = "/images/construction-premium.avif";
+                  }}
+                  onLoad={(e) => {
+                    e.target.style.opacity = "1";
+                  }}
+                  style={{ opacity: 0.9 }}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                       </div>
             </figure>
