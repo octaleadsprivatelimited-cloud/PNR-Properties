@@ -9,10 +9,10 @@ import { GiSmartphone, GiBrickWall, GiEnergyArrow, GiSofa } from "react-icons/gi
 import { MdOutlineChair } from "react-icons/md";
 
 export const stats = [
-  { label: "Years Of Excellence", value: "12+" },
-  { label: "RERA Approved Projects", value: "7+" },
-  { label: "Total Acreage Developed", value: "2000+" },
-  { label: "Happy Customers", value: "1000+" },
+  { label: "Years Legacy", value: "25" },
+  { label: "Happy Customers", value: "3000+" },
+  { label: "Projects Completed", value: "15" },
+  { label: "Years Experience", value: "12" },
 ];
 
 export const heroHighlights = [
@@ -25,73 +25,73 @@ export const heroHighlights = [
 
 export const services = [
   {
-    title: "Architectural Design",
+    title: "Open Villa Plots",
     description:
-      "Concept-to-blueprint architectural planning, approvals, 3D visualization, and structural coordination for homes and commercial spaces.",
-    icon: FaDraftingCompass,
-    image: "/images/architectural-design.webp",
-    highlights: [
-      "Architectural drawings & BIM-ready plans",
-      "Regulatory approvals & structural liaison",
-      "3D exterior elevations and walkthroughs",
-    ],
-  },
-  {
-    title: "Residential Construction",
-    description:
-      "End-to-end villa, bungalow, duplex, and independent floor construction with premium materials and site supervision.",
+      "Premium open villa plots in strategic locations with RERA and DTCP approvals. Perfect for building your dream villa with world-class amenities and excellent connectivity.",
     icon: FaHome,
     image: "/images/building-constructions.webp",
     highlights: [
-      "Custom layouts & vastu-aligned planning",
-      "Civil, MEP, and finishing under one roof",
-      "Site safety and weekly progress audits",
+      "DTCP & RERA Approved Plots",
+      "Strategic highway locations",
+      "Clear titles & legal compliance",
     ],
   },
   {
-    title: "Residential Interiors",
+    title: "Independent Houses",
     description:
-      "Turnkey interiors for bedrooms, living rooms, kitchens, and dining spaces tailored to lifestyle, storage, and aesthetic goals.",
+      "Spacious independent houses with modern architecture and premium finishes. Built with quality materials and designed for comfortable family living.",
+    icon: FaHome,
+    image: "/images/building-constructions.webp",
+    highlights: [
+      "Custom-designed layouts",
+      "Premium construction quality",
+      "Modern amenities included",
+    ],
+  },
+  {
+    title: "Duplex Villas",
+    description:
+      "Luxury duplex villas with contemporary designs, premium interiors, and world-class amenities. Perfect for families seeking spacious and elegant living spaces.",
+    icon: FaHome,
+    image: "/images/building-constructions.webp",
+    highlights: [
+      "Premium villa designs",
+      "World-class amenities",
+      "Strategic locations",
+    ],
+  },
+  {
+    title: "Agricultural Land",
+    description:
+      "Agricultural land plots in prime locations with proper documentation and clear titles. Ideal for farming, investment, or future development purposes.",
+    icon: FaHome,
+    highlights: [
+      "Clear land titles",
+      "Proper documentation",
+      "Investment opportunities",
+    ],
+  },
+  {
+    title: "Construction & Interior",
+    description:
+      "Complete construction and interior design services for residential and commercial properties. From design to execution, we handle everything under one roof.",
     icon: GiSofa,
     image: "/images/interiors.webp",
     highlights: [
-      "Modular kitchens & wardrobe systems",
-      "False ceilings, lighting & flooring",
-      "Premium finishes and bespoke furniture",
+      "End-to-end services",
+      "Quality craftsmanship",
+      "Timely project delivery",
     ],
   },
   {
-    title: "Commercial Interiors",
+    title: "High-rise Apartment",
     description:
-      "High-impact interiors for offices, retail, hospitality, salons, clinics, showrooms, and co-working environments.",
+      "Modern high-rise apartments with premium amenities, excellent connectivity, and RERA approvals. Luxury living spaces with panoramic views and world-class facilities.",
     icon: FaRegBuilding,
     highlights: [
-      "Brand-aligned design strategy",
-      "Acoustic, lighting & HVAC integration",
-      "Fast-track execution timelines",
-    ],
-  },
-  {
-    title: "Renovation & Remodeling",
-    description:
-      "Transform existing spaces with structural upgrades, damp-proofing, layout optimization, and finish refresh.",
-    icon: FaTools,
-    image: "/images/renovation-remodeling.webp",
-    highlights: [
-      "Structural rework & expansion",
-      "Bathroom, kitchen & facade upgrades",
-      "Waterproofing and damp treatment",
-    ],
-  },
-  {
-    title: "Home Automation",
-    description:
-      "Smart lighting, climate control, security, and voice-enabled solutions integrated with modern interiors.",
-    icon: GiSmartphone,
-    highlights: [
-      "App & voice-controlled experience",
-      "Security, CCTV & access integration",
-      "Energy monitoring and automation",
+      "RERA Approved Projects",
+      "Premium amenities",
+      "Excellent connectivity",
     ],
   },
 ];

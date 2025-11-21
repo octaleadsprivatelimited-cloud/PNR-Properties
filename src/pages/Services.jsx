@@ -7,34 +7,34 @@ import { services } from "../data/siteContent";
 // Services from home page - matching serviceCatalog
 const homePageServices = [
   {
-    title: "Building Constructions",
-    description: "From residential to commercial projects, we construct spaces with precision, ensuring durability and style.",
+    title: "Open Villa Plots",
+    description: "Premium open villa plots in strategic locations with RERA and DTCP approvals. Perfect for building your dream villa with world-class amenities and excellent connectivity.",
     image: "/images/building-constructions.webp",
   },
   {
-    title: "Architectural Design",
-    description: "Our architects blend creativity with functionality to design spaces that inspire and impress.",
-    image: "/images/architectural-design.webp",
+    title: "Independent Houses",
+    description: "Spacious independent houses with modern architecture and premium finishes. Built with quality materials and designed for comfortable family living.",
+    image: "/images/building-constructions.webp",
   },
   {
-    title: "Interiors",
-    description: "Transform your interiors into stunning, functional spaces that reflect your personality and lifestyle.",
+    title: "Duplex Villas",
+    description: "Luxury duplex villas with contemporary designs, premium interiors, and world-class amenities. Perfect for families seeking spacious and elegant living spaces.",
+    image: "/images/building-constructions.webp",
+  },
+  {
+    title: "Agricultural Land",
+    description: "Agricultural land plots in prime locations with proper documentation and clear titles. Ideal for farming, investment, or future development purposes.",
+    image: "/images/building-constructions.webp",
+  },
+  {
+    title: "Construction & Interior",
+    description: "Complete construction and interior design services for residential and commercial properties. From design to execution, we handle everything under one roof.",
     image: "/images/interiors.webp",
   },
   {
-    title: "PMC (Project Management Consultancy)",
-    description: "Experience seamless project execution with our expert management services—every detail handled with care.",
-    image: "/images/pmc-project-management-consultancy.jpeg",
-  },
-  {
-    title: "Engineering & Contracting",
-    description: "Our experienced engineers and contractors work collaboratively to deliver top-notch quality for every build.",
-    image: "/images/engineering-contracting.jpeg",
-  },
-  {
-    title: "Renovation & Remodeling",
-    description: "Reimagine existing spaces with innovative renovation solutions, adding value and comfort to your property.",
-    image: "/images/renovation-remodeling.webp",
+    title: "High-rise Apartment",
+    description: "Modern high-rise apartments with premium amenities, excellent connectivity, and RERA approvals. Luxury living spaces with panoramic views and world-class facilities.",
+    image: "/images/building-constructions.webp",
   },
 ];
 
