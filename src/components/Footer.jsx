@@ -73,18 +73,20 @@ const Footer = () => {
           </p>
           <div className="flex items-center gap-3 text-brand">
             <a
-              href="https://www.facebook.com/"
+              href="https://www.facebook.com/profile.php?id=100090963731439"
               target="_blank"
               rel="noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-brand-accent"
+              aria-label="Visit our Facebook page"
             >
               <FaFacebookF />
             </a>
             <a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/pnrpropertyconsultants?igsh=MWU2MXZpamZib2tjMw=="
               target="_blank"
               rel="noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-brand-accent"
+              aria-label="Visit our Instagram page"
             >
               <FaInstagram />
             </a>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SEO from "../components/SEO";
 import SectionHeading from "../components/SectionHeading";
 import useInViewAnimation from "../hooks/useInViewAnimation";
@@ -115,6 +115,7 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/movrpned";
 
 const Home = () => {
   useInViewAnimation();
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     firstName: "",
     phone: "",
@@ -135,14 +136,28 @@ const Home = () => {
   }, {});
 
   const locations = Object.keys(propertiesByLocation).map((location) => {
-    const hasLaunchingSoon = propertiesByLocation[location].some(prop => prop.launchingSoon);
+    const properties = propertiesByLocation[location];
+    const hasLaunchingSoon = properties.some(prop => prop.launchingSoon);
+    const firstProperty = properties[0];
     return {
       name: location,
-      count: propertiesByLocation[location].length,
-      image: propertiesByLocation[location][0]?.image || "/images/construction-site-1.avif",
+      count: properties.length,
+      image: firstProperty?.image || "/images/construction-site-1.avif",
       hasLaunchingSoon: hasLaunchingSoon,
+      firstPropertySlug: firstProperty?.slug,
+      properties: properties,
     };
   });
+
+  const handleLocationClick = (location) => {
+    // Navigate directly to the first property's individual page
+    if (location.firstPropertySlug) {
+      navigate(location.firstPropertySlug);
+    } else if (location.properties && location.properties.length > 0) {
+      // Fallback: if no slug but properties exist, show the list
+      setSelectedLocation(location.name);
+    }
+  };
 
   const handleFormChange = (event) => {
     const { name, value } = event.target;
@@ -422,7 +437,7 @@ const Home = () => {
             {locations.map((location) => (
               <article
                 key={location.name}
-                onClick={() => setSelectedLocation(location.name)}
+                onClick={() => handleLocationClick(location)}
                 className="group relative overflow-hidden rounded-2xl bg-white border border-brand/10 shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] cursor-pointer md:rounded-3xl"
               >
                 <div className="relative aspect-[4/3] overflow-hidden">

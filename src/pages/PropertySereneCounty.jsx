@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import SectionHeading from "../components/SectionHeading";
 import useInViewAnimation from "../hooks/useInViewAnimation";
 import { contactDetails } from "../data/siteContent";
 import { FaMapMarkerAlt, FaCheckCircle, FaBuilding, FaCertificate, FaHome, FaSwimmingPool, FaParking, FaPhoneAlt, FaWhatsapp, FaEnvelope } from "react-icons/fa";
+import { HiX, HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
 const heroBackground = "/images/serene-county-video.mp4";
 
@@ -53,6 +54,54 @@ const videos = [
 const PropertySereneCounty = () => {
   useInViewAnimation();
   const [selectedImage, setSelectedImage] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const openModal = (index) => {
+    setCurrentImageIndex(index);
+    setIsModalOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = "unset";
+  };
+
+  const goToPrevious = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!isModalOpen) return;
+      
+      if (e.key === "Escape") {
+        closeModal();
+      } else if (e.key === "ArrowLeft") {
+        goToPrevious();
+      } else if (e.key === "ArrowRight") {
+        goToNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isModalOpen, currentImageIndex]);
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      document.body.style.overflow = "unset";
+    }
+  }, [isModalOpen]);
 
   return (
     <div className="min-h-screen bg-white text-brand">
@@ -159,7 +208,11 @@ const PropertySereneCounty = () => {
         <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6">
           {/* Display Images */}
           {images.map((image, index) => (
-            <div key={`img-${index}`} className="group relative overflow-hidden rounded-2xl md:rounded-3xl">
+            <div 
+              key={`img-${index}`} 
+              className="group relative overflow-hidden rounded-2xl md:rounded-3xl cursor-pointer"
+              onClick={() => openModal(index)}
+            >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
                   src={image}
@@ -170,6 +223,11 @@ const PropertySereneCounty = () => {
                     console.error('Image load error:', image);
                   }}
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-sm font-semibold">
+                    Click to view
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -379,6 +437,74 @@ const PropertySereneCounty = () => {
           </div>
         </div>
       </section>
+
+      {/* Image Modal/Lightbox */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
+          onClick={closeModal}
+        >
+          {/* Close Button */}
+          <button
+            onClick={closeModal}
+            className="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 md:top-6 md:right-6 md:h-12 md:w-12"
+            aria-label="Close modal"
+          >
+            <HiX className="h-6 w-6 md:h-7 md:w-7" />
+          </button>
+
+          {/* Previous Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrevious();
+            }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 md:left-6 md:h-12 md:w-12"
+            aria-label="Previous image"
+          >
+            <HiChevronLeft className="h-6 w-6 md:h-7 md:w-7" />
+          </button>
+
+          {/* Next Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNext();
+            }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 md:right-6 md:h-12 md:w-12"
+            aria-label="Next image"
+          >
+            <HiChevronRight className="h-6 w-6 md:h-7 md:w-7" />
+          </button>
+
+          {/* Image Container */}
+          <div
+            className="relative max-h-[90vh] max-w-[90vw] px-12 md:px-20"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={images[currentImageIndex]}
+              alt={`${propertyDetails.title} - Image ${currentImageIndex + 1}`}
+              className="max-h-[90vh] max-w-full object-contain"
+              loading="eager"
+              decoding="async"
+              onError={(e) => {
+                e.target.src = "/images/construction-site-1.avif";
+              }}
+            />
+            
+            {/* Image Info */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 transform rounded-lg bg-black/50 px-4 py-2 text-center text-white backdrop-blur-sm md:bottom-6">
+              <p className="text-xs font-semibold md:text-sm">
+                {propertyDetails.title}
+              </p>
+              <p className="text-[10px] text-white/80 md:text-xs">
+                {currentImageIndex + 1} / {images.length}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
