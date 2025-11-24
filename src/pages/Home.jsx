@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import SectionHeading from "../components/SectionHeading";
 import useInViewAnimation from "../hooks/useInViewAnimation";
-import { testimonials, projectShowcase } from "../data/siteContent";
-import { FaStar } from "react-icons/fa";
+import { testimonials, projectShowcase, contactDetails } from "../data/siteContent";
+import { FaStar, FaWhatsapp, FaHandshake, FaChartLine, FaGraduationCap, FaNetworkWired, FaGlobe } from "react-icons/fa";
 
 const heroBackgroundImage =
   "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=2000&q=80";
@@ -195,6 +195,23 @@ const Home = () => {
   });
   const [formStatus, setFormStatus] = useState({ type: null, message: "" });
   const [submitting, setSubmitting] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+
+  // Group properties by location
+  const propertiesByLocation = projectShowcase.reduce((acc, property) => {
+    const location = property.location || "Other Locations";
+    if (!acc[location]) {
+      acc[location] = [];
+    }
+    acc[location].push(property);
+    return acc;
+  }, {});
+
+  const locations = Object.keys(propertiesByLocation).map((location) => ({
+    name: location,
+    count: propertiesByLocation[location].length,
+    image: propertiesByLocation[location][0]?.image || "/images/construction-site-1.avif",
+  }));
 
   const handleFormChange = (event) => {
     const { name, value } = event.target;
@@ -354,100 +371,157 @@ const Home = () => {
       <section className="fade-up mx-auto mt-12 w-full max-w-6xl px-4 py-12 text-brand md:mt-16 md:px-6 md:py-16 lg:px-12">
         <SectionHeading
           eyebrow="Our Properties"
-          title="Premium Real Estate Developments"
-          description="Explore our portfolio of premium residential and commercial properties designed to meet the highest standards of quality and luxury."
+          title={selectedLocation ? `Properties in ${selectedLocation}` : "Premium Real Estate Developments"}
+          description={selectedLocation 
+            ? `Explore our premium residential and commercial properties in ${selectedLocation}.`
+            : "Select a location to explore our portfolio of premium residential and commercial properties designed to meet the highest standards of quality and luxury."}
           align="center"
           tone="light"
         />
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 md:mt-12">
-          {projectShowcase.map((property) => {
-            const cardContent = (
-            <article
-              className={`group relative overflow-hidden rounded-2xl bg-white border transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] ${property.slug ? "cursor-pointer" : ""} md:rounded-3xl ${
-                property.launchingSoon
-                  ? "border-2 border-brand-accent shadow-[0_10px_30px_rgba(6,167,215,0.3)] ring-2 ring-brand-accent/20"
-                  : "border-brand/10 shadow-[0_10px_30px_rgba(0,0,0,0.08)]"
-              }`}
-            >
-              {property.launchingSoon && (
-                <div className="absolute top-0 right-0 z-20 bg-brand-accent text-white px-4 py-1.5 rounded-bl-2xl md:rounded-bl-3xl">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] md:text-xs">Launching Soon</span>
-                </div>
-              )}
-              <div className="relative aspect-[4/3] overflow-hidden">
-                {property.image2 ? (
-                  <div className="relative h-full w-full bg-brand/5">
-                    <img
-                      src={property.image}
-                      alt={property.title}
-                      className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
-                      loading="lazy"
-                      decoding="async"
-                      onError={(e) => {
-                        e.target.src = "/images/construction-site-1.avif";
-                      }}
-                      onLoad={(e) => {
-                        e.target.style.opacity = "1";
-                      }}
-                    />
-                    <img
-                      src={property.image2}
-                      alt={`${property.title} - Image 2`}
-                      className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                      loading="lazy"
-                      decoding="async"
-                      onError={(e) => {
-                        e.target.src = "/images/construction-site-1.avif";
-                      }}
-                    />
-                  </div>
+        
+        {selectedLocation ? (
+          <>
+            {/* Back Button */}
+            <div className="mt-8 mb-6 md:mt-10 md:mb-8">
+              <button
+                onClick={() => setSelectedLocation(null)}
+                className="flex items-center gap-2 text-sm font-semibold text-brand-accent hover:text-brand-accent/80 transition-colors md:text-base"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back to Locations
+              </button>
+            </div>
+            
+            {/* Properties for Selected Location */}
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 md:mt-12">
+              {propertiesByLocation[selectedLocation]?.map((property) => {
+                const cardContent = (
+                  <article
+                    className={`group relative overflow-hidden rounded-2xl bg-white border transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] ${property.slug ? "cursor-pointer" : ""} md:rounded-3xl ${
+                      property.launchingSoon
+                        ? "border-2 border-brand-accent shadow-[0_10px_30px_rgba(6,167,215,0.3)] ring-2 ring-brand-accent/20"
+                        : "border-brand/10 shadow-[0_10px_30px_rgba(0,0,0,0.08)]"
+                    }`}
+                  >
+                    {property.launchingSoon && (
+                      <div className="absolute top-0 right-0 z-20 bg-brand-accent text-white px-4 py-1.5 rounded-bl-2xl md:rounded-bl-3xl">
+                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] md:text-xs">Launching Soon</span>
+                      </div>
+                    )}
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      {property.image2 ? (
+                        <div className="relative h-full w-full bg-brand/5">
+                          <img
+                            src={property.image}
+                            alt={property.title}
+                            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
+                            loading="lazy"
+                            decoding="async"
+                            onError={(e) => {
+                              e.target.src = "/images/construction-site-1.avif";
+                            }}
+                            onLoad={(e) => {
+                              e.target.style.opacity = "1";
+                            }}
+                          />
+                          <img
+                            src={property.image2}
+                            alt={`${property.title} - Image 2`}
+                            className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                            loading="lazy"
+                            decoding="async"
+                            onError={(e) => {
+                              e.target.src = "/images/construction-site-1.avif";
+                            }}
+                          />
+                        </div>
+                      ) : (
+                        <img
+                          src={property.image}
+                          alt={property.title}
+                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          loading="lazy"
+                          decoding="async"
+                          onError={(e) => {
+                            e.target.src = "/images/construction-site-1.avif";
+                          }}
+                          onLoad={(e) => {
+                            e.target.style.opacity = "1";
+                          }}
+                        />
+                      )}
+                      {property.launchingSoon && property.launchDate && (
+                        <span className="absolute bottom-4 left-4 right-4 z-10 rounded-lg bg-brand-accent/95 text-white px-3 py-2 text-[10px] font-semibold text-center md:text-xs">
+                          Launch Date: {property.launchDate}
+                        </span>
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    </div>
+                    <div className="space-y-2 p-4 md:space-y-3 md:p-6">
+                      <h3 className={`text-base font-semibold md:text-lg ${property.launchingSoon ? "text-brand-accent" : "text-brand"}`}>
+                        {property.title}
+                      </h3>
+                      {property.location && (
+                        <p className="text-xs text-brand/60 font-medium md:text-sm">
+                          📍 {property.location}
+                        </p>
+                      )}
+                      <p className="text-sm leading-relaxed text-brand/70 md:text-base">{property.description}</p>
+                    </div>
+                  </article>
+                );
+
+                return property.slug ? (
+                  <Link key={property.title} to={property.slug} className="block">
+                    {cardContent}
+                  </Link>
                 ) : (
+                  <div key={property.title}>
+                    {cardContent}
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        ) : (
+          /* Locations View */
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 md:mt-12">
+            {locations.map((location) => (
+              <article
+                key={location.name}
+                onClick={() => setSelectedLocation(location.name)}
+                className="group relative overflow-hidden rounded-2xl bg-white border border-brand/10 shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] cursor-pointer md:rounded-3xl"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
-                    src={property.image}
-                    alt={property.title}
+                    src={location.image}
+                    alt={location.name}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
                     decoding="async"
                     onError={(e) => {
                       e.target.src = "/images/construction-site-1.avif";
                     }}
-                    onLoad={(e) => {
-                      e.target.style.opacity = "1";
-                    }}
                   />
-                )}
-                {property.launchingSoon && property.launchDate && (
-                  <span className="absolute bottom-4 left-4 right-4 z-10 rounded-lg bg-brand-accent/95 text-white px-3 py-2 text-[10px] font-semibold text-center md:text-xs">
-                    Launch Date: {property.launchDate}
-                  </span>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              </div>
-              <div className="space-y-2 p-4 md:space-y-3 md:p-6">
-                <h3 className={`text-lg font-semibold md:text-xl ${property.launchingSoon ? "text-brand-accent" : "text-brand"}`}>
-                  {property.title}
-                </h3>
-                {property.location && (
-                  <p className="text-xs text-brand/60 font-medium md:text-sm">
-                    📍 {property.location}
-                  </p>
-                )}
-                <p className="text-sm leading-relaxed text-brand/70 md:text-base">{property.description}</p>
-              </div>
-            </article>
-            );
-
-            return property.slug ? (
-              <Link key={property.title} to={property.slug} className="block">
-                {cardContent}
-              </Link>
-            ) : (
-              <div key={property.title}>
-                {cardContent}
-              </div>
-            );
-          })}
-        </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                    <div className="inline-block rounded-lg bg-brand-accent/95 px-3 py-1.5 mb-2 backdrop-blur-sm">
+                      <p className="text-xs font-bold text-white uppercase tracking-[0.15em] md:text-sm">
+                        {location.count} {location.count === 1 ? "Property" : "Properties"}
+                      </p>
+                    </div>
+                    <h3 className="text-lg font-bold text-white drop-shadow-lg md:text-xl lg:text-xl">
+                      {location.name}
+                    </h3>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* About */}
@@ -758,6 +832,141 @@ const Home = () => {
           </div>
             </article>
               ))}
+        </div>
+      </section>
+
+      {/* Join Our Team */}
+      <section className="fade-up relative mt-12 mb-0 w-full overflow-hidden bg-gradient-to-br from-brand-accent/10 via-white to-brand/10 py-12 md:mt-16 md:py-20">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(6,167,215,0.05),transparent_60%)]" />
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-4 md:px-6 lg:px-10">
+          <div className="text-center mb-10 md:mb-12">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-brand-accent md:text-[11px] md:tracking-[0.4em]">Career Opportunities</p>
+            <h2 className="mt-2 text-2xl font-semibold text-brand md:mt-3 md:text-3xl lg:text-4xl">
+              JOIN OUR TEAM
+            </h2>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12">
+            {/* Left Content */}
+            <div className="space-y-6 text-brand">
+              <div className="rounded-2xl bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.08)] md:rounded-3xl md:p-8">
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold text-brand md:text-xl">Dear Real Estate Expert,</h3>
+                  <p className="mt-2 text-sm text-brand/70 md:text-base">
+                    Welcome to the <strong className="text-brand-accent">JB INFRA GROUP</strong>.
+                  </p>
+                </div>
+                <p className="text-xs leading-relaxed text-brand/70 md:text-sm">
+                  Whether you're a real estate associate, channel partner, Realtor or just passionate about real estate, you're in the right place!
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.08)] md:rounded-3xl md:p-8">
+                <h4 className="text-base font-semibold text-brand mb-3 md:text-lg">What We Specialize In</h4>
+                <ul className="space-y-2 text-xs text-brand/70 md:text-sm">
+                  <li className="flex items-start gap-2">
+                    <span className="text-brand-accent mt-1">✓</span>
+                    <span>HMDA, DTCP, & RERA Approved Residential Open Plots</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-brand-accent mt-1">✓</span>
+                    <span>Independent Duplex Villas</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-brand-accent mt-1">✓</span>
+                    <span>Global Properties</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="rounded-2xl bg-gradient-to-br from-brand-accent to-brand-accent/80 p-6 text-white shadow-[0_10px_30px_rgba(6,167,215,0.3)] md:rounded-3xl md:p-8">
+                <h4 className="text-base font-semibold mb-3 md:text-lg">What We Offer</h4>
+                <ul className="space-y-2 text-xs text-white/90 md:text-sm">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1">💼</span>
+                    <span>Good Commissions</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1">🎁</span>
+                    <span>Bonanza & Incentives</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1">✈️</span>
+                    <span>National & International Trips</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Right Content */}
+            <div className="space-y-6">
+              <div className="rounded-2xl bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.08)] md:rounded-3xl md:p-8">
+                <h4 className="text-base font-semibold text-brand mb-4 md:text-lg">Benefits</h4>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-accent/10 text-brand-accent">
+                      <FaGraduationCap className="text-lg" />
+                    </div>
+                    <div>
+                      <h5 className="text-xs font-semibold text-brand md:text-sm">Training & Support</h5>
+                      <p className="mt-1 text-[10px] text-brand/60 md:text-xs">Comprehensive training programs</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-accent/10 text-brand-accent">
+                      <FaNetworkWired className="text-lg" />
+                    </div>
+                    <div>
+                      <h5 className="text-xs font-semibold text-brand md:text-sm">Network with Experts</h5>
+                      <p className="mt-1 text-[10px] text-brand/60 md:text-xs">Connect with industry leaders</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-accent/10 text-brand-accent">
+                      <FaChartLine className="text-lg" />
+                    </div>
+                    <div>
+                      <h5 className="text-xs font-semibold text-brand md:text-sm">Latest Deals</h5>
+                      <p className="mt-1 text-[10px] text-brand/60 md:text-xs">Stay updated on new projects</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-accent/10 text-brand-accent">
+                      <FaHandshake className="text-lg" />
+                    </div>
+                    <div>
+                      <h5 className="text-xs font-semibold text-brand md:text-sm">Grow Together</h5>
+                      <p className="mt-1 text-[10px] text-brand/60 md:text-xs">Mutual growth opportunities</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-gradient-to-br from-brand/5 to-brand-accent/10 p-6 border-2 border-brand-accent/20 md:rounded-3xl md:p-8">
+                <div className="text-center space-y-4">
+                  <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/10 text-brand-accent mb-2">
+                    <FaWhatsapp className="text-3xl" />
+                  </div>
+                  <h4 className="text-base font-semibold text-brand md:text-lg">Join Our WhatsApp Community</h4>
+                  <p className="text-xs text-brand/70 md:text-sm">
+                    For Latest Updates and Upcoming Projects
+                  </p>
+                  <a
+                    href={`https://wa.me/${contactDetails.phonePrimary.replace(/\s+/g, "")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-brand-accent/90 shadow-[0_10px_30px_rgba(6,167,215,0.3)] md:px-8 md:py-3.5 md:text-sm"
+                  >
+                    <FaWhatsapp className="text-base" />
+                    Join WhatsApp Community
+                  </a>
+                  <p className="text-[10px] text-brand/60 italic md:text-xs">
+                    Thanks for joining us.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
