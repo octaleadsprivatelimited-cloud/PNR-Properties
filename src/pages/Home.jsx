@@ -134,11 +134,15 @@ const Home = () => {
     return acc;
   }, {});
 
-  const locations = Object.keys(propertiesByLocation).map((location) => ({
-    name: location,
-    count: propertiesByLocation[location].length,
-    image: propertiesByLocation[location][0]?.image || "/images/construction-site-1.avif",
-  }));
+  const locations = Object.keys(propertiesByLocation).map((location) => {
+    const hasLaunchingSoon = propertiesByLocation[location].some(prop => prop.launchingSoon);
+    return {
+      name: location,
+      count: propertiesByLocation[location].length,
+      image: propertiesByLocation[location][0]?.image || "/images/construction-site-1.avif",
+      hasLaunchingSoon: hasLaunchingSoon,
+    };
+  });
 
   const handleFormChange = (event) => {
     const { name, value } = event.target;
@@ -434,10 +438,19 @@ const Home = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
-                    <div className="inline-block rounded-lg bg-brand-accent/95 px-3 py-1.5 mb-2 backdrop-blur-sm">
-                      <p className="text-xs font-bold text-white uppercase tracking-[0.15em] md:text-sm">
-                        {location.count} {location.count === 1 ? "Property" : "Properties"}
-                      </p>
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <div className="inline-block rounded-lg bg-brand-accent/95 px-3 py-1.5 backdrop-blur-sm">
+                        <p className="text-xs font-bold text-white uppercase tracking-[0.15em] md:text-sm">
+                          {location.count} {location.count === 1 ? "Property" : "Properties"}
+                        </p>
+                      </div>
+                      {location.hasLaunchingSoon && (
+                        <div className="inline-block rounded-lg bg-yellow-500/95 px-3 py-1.5 backdrop-blur-sm animate-pulse">
+                          <p className="text-xs font-bold text-white uppercase tracking-[0.15em] md:text-sm">
+                            🚀 Launching Soon
+                          </p>
+                        </div>
+                      )}
                     </div>
                     <h3 className="text-lg font-bold text-white drop-shadow-lg md:text-xl lg:text-xl">
                       {location.name}

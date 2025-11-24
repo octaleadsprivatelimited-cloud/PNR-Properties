@@ -197,13 +197,12 @@ export const projectShowcase = [
   {
     title: "JB's Pride",
     description:
-      "DTCP & RERA Approved project on Shankarpally Highway near Mominpet. Premium residential development with world-class amenities and excellent location advantages. Launching soon on 09/12/2025!",
+      "DTCP & RERA Approved project on Shankarpally Highway near Mominpet. Premium residential development with world-class amenities and excellent location advantages.",
     image: "/images/pride-1.jpeg",
     image2: "/images/pride-2.jpeg",
     category: "DTCP & RERA Approved",
     location: "Mominpet, Shankarpally Highway",
-    launchingSoon: true,
-    launchDate: "09/12/2025",
+    launchingSoon: false,
     slug: "/property/jbs-pride",
   },
   {
@@ -220,12 +219,13 @@ export const projectShowcase = [
   {
     title: "JB's Harmony Woods",
     description:
-      "Premium residential development on Srisilam Highway near Thummaloor. Strategically located project with modern amenities and excellent growth potential.",
+      "Premium residential development on Srisilam Highway near Thummaloor. Strategically located project with modern amenities and excellent growth potential. Launching soon on 09/12/2025!",
     image: "/images/harmony-woods-1.jpeg",
     image2: "/images/harmony-woods-2.jpeg",
     category: "Future City",
     location: "Thummaloor, Srisilam Highway",
-    launchingSoon: false,
+    launchingSoon: true,
+    launchDate: "09/12/2025",
     slug: "/property/jbs-harmony-woods",
   },
 ];

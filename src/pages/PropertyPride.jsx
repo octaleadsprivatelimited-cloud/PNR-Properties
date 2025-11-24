@@ -14,8 +14,7 @@ const propertyDetails = {
   approval: "DTCP & RERA Approved",
   area: "Premium Residential Layout",
   type: "Residential Development",
-  description: "DTCP & RERA Approved premium residential development on Shankarpally Highway near Mominpet. Features world-class amenities, excellent location advantages, and exceptional living experience. Launching soon on 09/12/2025!",
-  launchDate: "09/12/2025",
+  description: "DTCP & RERA Approved premium residential development on Shankarpally Highway near Mominpet. Features world-class amenities, excellent location advantages, and exceptional living experience.",
 };
 
 const features = [
@@ -59,7 +58,7 @@ const PropertyPride = () => {
     <div className="min-h-screen bg-white text-brand">
       <SEO
         title="JB's Pride - Shankarpally Highway, Mominpet"
-        description="JB's Pride - DTCP & RERA Approved premium residential development on Shankarpally Highway near Mominpet. Launching soon on 09/12/2025 with world-class amenities and excellent location advantages."
+        description="JB's Pride - DTCP & RERA Approved premium residential development on Shankarpally Highway near Mominpet. Features world-class amenities and excellent location advantages."
         keywords={[
           "JB's Pride",
           "Mominpet properties",
@@ -68,7 +67,6 @@ const PropertyPride = () => {
           "RERA approved",
           "residential development",
           "premium plots",
-          "launching soon",
         ]}
         image="/images/pride-1.jpeg"
       />
@@ -91,17 +89,14 @@ const PropertyPride = () => {
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/50 to-black/40" />
         <div className="relative z-10 mx-auto max-w-4xl px-4 py-16 text-center md:px-6 md:py-24 lg:px-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-brand-accent/30 bg-brand-accent/20 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.35em] text-white backdrop-blur-sm md:text-xs md:tracking-[0.38em]">
-            Launching Soon - {propertyDetails.launchDate}
-          </div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.35em] text-white/90 backdrop-blur-sm md:text-xs md:tracking-[0.38em] mt-3">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.35em] text-white/90 backdrop-blur-sm md:text-xs md:tracking-[0.38em]">
             {propertyDetails.approval}
           </div>
           <h1 className="mt-4 text-3xl font-semibold md:mt-6 md:text-5xl lg:text-6xl">
             {propertyDetails.title}
           </h1>
           <p className="mt-4 text-sm text-white/90 md:mt-6 md:text-base lg:text-lg">
-            DTCP & RERA Approved Premium Residential Development - Launching Soon!
+            DTCP & RERA Approved Premium Residential Development
           </p>
         </div>
       </section>
@@ -111,9 +106,6 @@ const PropertyPride = () => {
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-brand-accent/20 bg-brand-accent/5 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.35em] text-brand-accent md:text-xs md:tracking-[0.38em]">
-              Launching Soon - {propertyDetails.launchDate}
-            </div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-brand-accent/20 bg-brand-accent/5 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.35em] text-brand-accent md:text-xs md:tracking-[0.38em] ml-3">
               {propertyDetails.approval}
             </div>
             <h1 className="text-3xl font-semibold leading-tight text-brand md:text-4xl lg:text-5xl">
@@ -312,7 +304,7 @@ const PropertyPride = () => {
               Interested in JB's Pride?
             </h2>
             <p className="mt-4 text-sm text-white/90 md:text-base lg:text-lg">
-              Contact us today to pre-book your plot. Launching soon on {propertyDetails.launchDate}!
+              Contact us today to schedule a site visit and learn more about this premium residential development
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-6">
               <Link
