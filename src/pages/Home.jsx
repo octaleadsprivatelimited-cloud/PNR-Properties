@@ -4,7 +4,7 @@ import SEO from "../components/SEO";
 import SectionHeading from "../components/SectionHeading";
 import useInViewAnimation from "../hooks/useInViewAnimation";
 import { testimonials, projectShowcase, contactDetails } from "../data/siteContent";
-import { FaStar, FaWhatsapp, FaHandshake, FaChartLine, FaGraduationCap, FaNetworkWired, FaGlobe } from "react-icons/fa";
+import { FaStar, FaWhatsapp, FaHandshake, FaChartLine, FaGraduationCap, FaNetworkWired, FaGlobe, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 const heroBackgroundImage =
   "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=2000&q=80";
@@ -109,79 +109,6 @@ const achievements = [
   { label: "Happy Clients", value: "300+" },
   { label: "Years of Experience", value: "12+" },
   { label: "Expert Professionals", value: "80+" },
-];
-
-const galleryHighlights = [
-  {
-    title: "JB's Nature Valley",
-    image: "/images/nature-valley-1.jpeg",
-    category: "DTCP & RERA Approved",
-  },
-  {
-    title: "JB's Nature Valley",
-    image: "/images/nature-valley-2.jpeg",
-    category: "700 Acres Township",
-  },
-  {
-    title: "JB's Serene City",
-    image: "/images/serene-city-1.jpeg",
-    category: "HMDA & RERA Approved",
-  },
-  {
-    title: "JB's Serene City",
-    image: "/images/serene-city-2.jpeg",
-    category: "700 Acres Township",
-  },
-  {
-    title: "JB's Pristine City",
-    image: "/images/pristine-city-1.jpeg",
-    category: "DTCP & TG-RERA Approved",
-  },
-  {
-    title: "JB's Pristine City",
-    image: "/images/pristine-city-2.jpeg",
-    category: "Vikarabad Town",
-  },
-  {
-    title: "JB Serene County-1",
-    image: "/images/serene-county1-1.jpeg",
-    category: "HMDA & TS-RERA Approved",
-  },
-  {
-    title: "JB Serene County-1",
-    image: "/images/serene-county1-2.jpeg",
-    category: "ORR Exit-13",
-  },
-  {
-    title: "JB's Pride",
-    image: "/images/pride-1.jpeg",
-    category: "DTCP & RERA Approved",
-  },
-  {
-    title: "JB's Pride",
-    image: "/images/pride-2.jpeg",
-    category: "Launching Soon",
-  },
-  {
-    title: "JB's Serene County",
-    image: "/images/serene-county-1.jpeg",
-    category: "HMDA & RERA Approved",
-  },
-  {
-    title: "JB's Serene County",
-    image: "/images/serene-county-2.jpeg",
-    category: "ORR Exit-12",
-  },
-  {
-    title: "JB's Harmony Woods",
-    image: "/images/harmony-woods-1.jpeg",
-    category: "Future City",
-  },
-  {
-    title: "JB's Harmony Woods",
-    image: "/images/harmony-woods-2.jpeg",
-    category: "Srisilam Highway",
-  },
 ];
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/movrpned";
@@ -524,119 +451,66 @@ const Home = () => {
         )}
       </section>
 
-      {/* About */}
-      <section className="fade-up mx-auto mt-12 w-full max-w-6xl px-4 py-6 md:mt-20 md:px-6 md:py-12 lg:px-10">
-        <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
-          <div className="relative">
-            <div className="overflow-hidden rounded-[24px] shadow-[0_30px_70px_rgba(15,23,42,0.18)] md:rounded-[32px]">
+      {/* About PNR Properties - Compact */}
+      <section className="fade-up mx-auto mt-12 w-full max-w-6xl px-4 py-8 md:mt-16 md:px-6 md:py-10 lg:px-10">
+        <div className="grid gap-6 lg:grid-cols-2 lg:items-center lg:gap-10">
+          <div className="relative group w-full">
+            <div className="overflow-hidden rounded-2xl shadow-lg md:rounded-3xl w-full">
               <img
                 src="/images/founder-nagaraju.jpeg"
                 alt="PULUKARAM NAGARAJU - Founder of PNR Properties"
-                className="h-full w-full object-cover"
-                style={{ filter: "none" }}
+                className="w-full h-full object-cover aspect-[4/5] md:aspect-[3/4] transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
-            {/* Stats overlay card */}
-            <div className="absolute -bottom-6 -right-6 hidden lg:block">
-              <div className="rounded-2xl bg-white p-6 shadow-[0_20px_50px_rgba(0,0,0,0.15)] md:rounded-3xl md:p-8">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-brand md:text-3xl">12+</p>
-                    <p className="text-xs text-brand/70 md:text-sm">Years</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-brand md:text-3xl">7+</p>
-                    <p className="text-xs text-brand/70 md:text-sm">Projects</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-brand md:text-3xl">2000+</p>
-                    <p className="text-xs text-brand/70 md:text-sm">Acres</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-brand md:text-3xl">1000+</p>
-                    <p className="text-xs text-brand/70 md:text-sm">Customers</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
-          <div className="space-y-5 text-slate-900 md:space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-brand-accent/20 bg-brand-accent/5 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.4em] text-brand-accent md:text-sm md:tracking-[0.45em]">
+          <div className="space-y-3 text-brand">
+            <div className="inline-flex items-center gap-2 rounded-full border border-brand-accent/20 bg-brand-accent/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.35em] text-brand-accent md:text-xs">
               About PNR Properties
             </div>
-            <h2 className="text-3xl font-semibold leading-tight md:text-4xl lg:text-5xl">
+            <h2 className="text-2xl font-bold leading-tight text-brand md:text-3xl">
               Turning Visions Into Reality With A Legacy Of Quality And Trust
             </h2>
-            <div className="space-y-2">
-              <p className="text-base font-semibold text-brand md:text-lg">
-                PULUKARAM NAGARAJU
-              </p>
-              <p className="text-xs text-brand/60 md:text-sm">
-                Founder, PNR Properties
-              </p>
-            </div>
-            <p className="text-sm leading-relaxed text-slate-600 md:text-base">
-              Founded by <strong>PULUKARAM NAGARAJU</strong>, PNR Properties specializes in delivering premium real estate properties and developments across Telangana. We develop DTCP, HMDA, and RERA approved JB's branded projects including integrated satellite townships, luxury apartments, villas, and commercial complexes.
-            </p>
-            <p className="text-sm leading-relaxed text-slate-600 md:text-base">
-              Under the visionary leadership of <strong>PULUKARAM NAGARAJU</strong>, our experienced team works passionately to create exceptional residential and commercial spaces with world-class amenities and strategic locations that offer lifetime value to our customers.
+            <p className="text-xs font-semibold text-brand-accent md:text-sm">PULUKARAM NAGARAJU - Founder</p>
+            <p className="text-sm leading-relaxed text-brand/80 md:text-base">
+              Founded by <strong className="text-brand font-bold">PULUKARAM NAGARAJU</strong>, PNR Properties delivers premium RERA-approved properties across Telangana, including integrated townships, luxury apartments, villas, and commercial complexes with world-class amenities.
             </p>
             
-            {/* Feature highlights */}
-            <div className="grid grid-cols-2 gap-3 pt-4 md:gap-4">
-              {aboutPillars.map((pillar, index) => (
-                <div key={index} className="rounded-xl border border-brand/10 bg-white/50 p-4 transition hover:border-brand-accent/30 hover:shadow-md md:rounded-2xl md:p-5">
-                  <h4 className="text-xs font-semibold text-brand md:text-sm">{pillar.title}</h4>
-                  <p className="mt-1 text-[10px] leading-relaxed text-slate-600 md:mt-2 md:text-xs">{pillar.description}</p>
-                </div>
-              ))}
+            {/* Compact Stats */}
+            <div className="grid grid-cols-4 gap-2 pt-2">
+              <div className="rounded-lg bg-brand-accent/5 p-2 text-center border border-brand-accent/10">
+                <p className="text-lg font-bold text-brand-accent md:text-xl">12+</p>
+                <p className="text-[9px] font-semibold text-brand/70 uppercase mt-0.5">Years</p>
+              </div>
+              <div className="rounded-lg bg-brand-accent/5 p-2 text-center border border-brand-accent/10">
+                <p className="text-lg font-bold text-brand-accent md:text-xl">2000+</p>
+                <p className="text-[9px] font-semibold text-brand/70 uppercase mt-0.5">Acres</p>
+              </div>
+              <div className="rounded-lg bg-brand-accent/5 p-2 text-center border border-brand-accent/10">
+                <p className="text-lg font-bold text-brand-accent md:text-xl">7+</p>
+                <p className="text-[9px] font-semibold text-brand/70 uppercase mt-0.5">Projects</p>
+              </div>
+              <div className="rounded-lg bg-brand-accent/5 p-2 text-center border border-brand-accent/10">
+                <p className="text-lg font-bold text-brand-accent md:text-xl">1000+</p>
+                <p className="text-[9px] font-semibold text-brand/70 uppercase mt-0.5">Customers</p>
+              </div>
             </div>
 
-            {/* Badges */}
-            <div className="flex flex-wrap gap-2 pt-2 md:gap-3">
-              {["RERA Approved", "DTCP & HMDA", "Premium Amenities", "Strategic Locations"].map((badge) => (
-                <span key={badge} className="rounded-full border border-brand/20 bg-brand/5 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-brand/80 md:px-4 md:py-2 md:text-xs">
-                  {badge}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex flex-col gap-3 pt-4 sm:flex-row sm:flex-wrap">
+            <div className="flex flex-col gap-2 pt-2 sm:flex-row">
               <Link
                 to="/about"
-                className="w-full rounded-full bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-brand-accent/90 sm:w-auto sm:px-10 sm:py-3.5 sm:text-sm"
+                className="rounded-full bg-brand-accent px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:bg-brand-accent/90 text-center sm:px-8 sm:py-3 sm:text-sm"
               >
                 Learn More
               </Link>
               <Link
                 to="/contact"
-                className="w-full rounded-full border-2 border-brand-accent bg-transparent px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-brand-accent transition hover:bg-brand-accent/10 sm:w-auto sm:px-10 sm:py-3.5 sm:text-sm"
+                className="rounded-full border-2 border-brand-accent bg-transparent px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.3em] text-brand-accent transition hover:bg-brand-accent hover:text-white text-center sm:px-8 sm:py-3 sm:text-sm"
               >
                 Contact Us
               </Link>
             </div>
-          </div>
-        </div>
-
-        {/* Stats for mobile */}
-        <div className="mt-8 grid grid-cols-2 gap-4 lg:hidden md:grid-cols-4">
-          <div className="rounded-xl bg-brand/5 p-4 text-center md:rounded-2xl md:p-6">
-            <p className="text-2xl font-bold text-brand md:text-3xl">12+</p>
-            <p className="mt-1 text-xs text-brand/70 md:text-sm">Years of Excellence</p>
-          </div>
-          <div className="rounded-xl bg-brand/5 p-4 text-center md:rounded-2xl md:p-6">
-            <p className="text-2xl font-bold text-brand md:text-3xl">7+</p>
-            <p className="mt-1 text-xs text-brand/70 md:text-sm">RERA Approved</p>
-          </div>
-          <div className="rounded-xl bg-brand/5 p-4 text-center md:rounded-2xl md:p-6">
-            <p className="text-2xl font-bold text-brand md:text-3xl">2000+</p>
-            <p className="mt-1 text-xs text-brand/70 md:text-sm">Acres Developed</p>
-          </div>
-          <div className="rounded-xl bg-brand/5 p-4 text-center md:rounded-2xl md:p-6">
-            <p className="text-2xl font-bold text-brand md:text-3xl">1000+</p>
-            <p className="mt-1 text-xs text-brand/70 md:text-sm">Happy Customers</p>
           </div>
         </div>
       </section>
@@ -770,44 +644,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Gallery */}
-      <section className="fade-up mx-auto mt-12 w-full max-w-6xl px-4 py-12 text-brand md:mt-16 md:px-6 md:py-16 lg:px-12">
-        <SectionHeading
-          eyebrow="Our Gallery"
-          title="The works we are proud of."
-          description="Premium residential and commercial properties, integrated townships, luxury villas, and strategic developments captured from our portfolio."
-          align="left"
-          tone="light"
-        />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 md:mt-12">
-          {galleryHighlights.map((item) => (
-            <figure
-              key={item.title}
-              className="group relative overflow-hidden rounded-2xl bg-[#f8fafc] ring-1 ring-brand/10 shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-2 hover:ring-brand/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)] md:rounded-3xl"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden bg-brand/5">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                  decoding="async"
-                  fetchPriority="low"
-                  onError={(e) => {
-                    e.target.src = "/images/construction-premium.avif";
-                  }}
-                  onLoad={(e) => {
-                    e.target.style.opacity = "1";
-                  }}
-                  style={{ opacity: 0.9 }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                      </div>
-            </figure>
-          ))}
-        </div>
-      </section>
-
       {/* Testimonials */}
       <section className="fade-up mx-auto mt-12 w-full max-w-6xl px-4 py-10 text-center md:mt-16 md:px-6 md:py-12 lg:px-10">
         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-accent md:text-sm md:tracking-[0.4em]">Testimonial</p>
@@ -835,16 +671,19 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Join Our Team */}
-      <section className="fade-up relative mt-12 mb-0 w-full overflow-hidden bg-gradient-to-br from-brand-accent/10 via-white to-brand/10 py-12 md:mt-16 md:py-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(6,167,215,0.05),transparent_60%)]" />
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-4 md:px-6 lg:px-10">
-          <div className="text-center mb-10 md:mb-12">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-brand-accent md:text-[11px] md:tracking-[0.4em]">Career Opportunities</p>
-            <h2 className="mt-2 text-2xl font-semibold text-brand md:mt-3 md:text-3xl lg:text-4xl">
-              JOIN OUR TEAM
-            </h2>
-          </div>
+       {/* Join Our Team */}
+       <section className="fade-up relative mt-12 mb-0 w-full overflow-hidden bg-gradient-to-br from-brand-accent/10 via-white to-brand/10 py-12 md:mt-16 md:py-20">
+         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(6,167,215,0.05),transparent_60%)]" />
+         <div className="relative z-10 mx-auto w-full max-w-6xl px-4 md:px-6 lg:px-10">
+           <div className="text-center mb-10 md:mb-12">
+             <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-brand-accent md:text-[11px] md:tracking-[0.4em]">Career Opportunities</p>
+             <h2 className="mt-2 text-2xl font-semibold text-brand md:mt-3 md:text-3xl lg:text-4xl">
+               JOIN OUR TEAM
+             </h2>
+             <p className="mt-3 text-sm font-semibold text-brand-accent md:text-base lg:text-lg">
+               Connect · Collaborate · Grow
+             </p>
+           </div>
 
           <div className="grid gap-8 lg:grid-cols-2 lg:items-start lg:gap-12">
             {/* Left Content */}
@@ -951,15 +790,15 @@ const Home = () => {
                   <p className="text-xs text-brand/70 md:text-sm">
                     For Latest Updates and Upcoming Projects
                   </p>
-                  <a
-                    href={`https://wa.me/${contactDetails.phonePrimary.replace(/\s+/g, "")}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-brand-accent/90 shadow-[0_10px_30px_rgba(6,167,215,0.3)] md:px-8 md:py-3.5 md:text-sm"
-                  >
-                    <FaWhatsapp className="text-base" />
-                    Join WhatsApp Community
-                  </a>
+                   <a
+                     href="https://chat.whatsapp.com/C8q5X0DhW6y90OY1h8yN93?mode=wwt"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-brand-accent/90 shadow-[0_10px_30px_rgba(6,167,215,0.3)] md:px-8 md:py-3.5 md:text-sm"
+                   >
+                     <FaWhatsapp className="text-base" />
+                     Join WhatsApp Community
+                   </a>
                   <p className="text-[10px] text-brand/60 italic md:text-xs">
                     Thanks for joining us.
                   </p>
@@ -1049,6 +888,62 @@ const Home = () => {
                 {submitting ? "Sending..." : "Submit"}
               </button>
             </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Connect With Us Section */}
+      <section className="fade-up mx-auto w-full max-w-6xl px-4 py-12 text-brand md:px-6 md:py-16 lg:px-10">
+        <div className="rounded-3xl bg-gradient-to-br from-brand-accent/10 via-white to-brand/10 p-8 border-2 border-brand-accent/20 shadow-[0_20px_60px_rgba(6,167,215,0.15)] md:p-12">
+          <div className="mx-auto max-w-3xl text-center space-y-6 md:space-y-8">
+            <div className="space-y-3">
+              <h2 className="text-2xl font-bold text-brand md:text-3xl lg:text-4xl">
+                Connect With Us For Best Properties
+              </h2>
+              <p className="text-sm text-brand/70 md:text-base max-w-2xl mx-auto">
+                Get in touch with our expert team to explore premium RERA-approved properties, schedule site visits, and find your dream home.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+              <a
+                href={`tel:${contactDetails.phonePrimary.replace(/\s+/g, "")}`}
+                className="group flex items-center gap-3 rounded-full bg-brand-accent px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-accent/90 hover:shadow-[0_10px_30px_rgba(6,167,215,0.3)] md:px-8 md:py-3.5 md:text-base"
+              >
+                <FaPhoneAlt className="text-base" />
+                Call Now
+              </a>
+              <a
+                href={`https://wa.me/${contactDetails.phonePrimary.replace(/\s+/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#25D366]/90 hover:shadow-[0_10px_30px_rgba(37,211,102,0.3)] md:px-8 md:py-3.5 md:text-base"
+              >
+                <FaWhatsapp className="text-base" />
+                WhatsApp
+              </a>
+              <Link
+                to="/contact"
+                className="group flex items-center gap-3 rounded-full bg-white border-2 border-brand-accent px-6 py-3 text-sm font-semibold text-brand-accent transition-all duration-300 hover:bg-brand-accent hover:text-white hover:shadow-[0_10px_30px_rgba(6,167,215,0.2)] md:px-8 md:py-3.5 md:text-base"
+              >
+                <FaEnvelope className="text-base" />
+                Contact Form
+              </Link>
+            </div>
+
+            <div className="pt-4 border-t border-brand-accent/20">
+              <p className="text-xs text-brand/60 md:text-sm">
+                <strong className="text-brand">Phone:</strong>{" "}
+                <a href={`tel:${contactDetails.phonePrimary}`} className="text-brand-accent hover:underline">
+                  {contactDetails.phonePrimary}
+                </a>
+                {" | "}
+                <strong className="text-brand">Email:</strong>{" "}
+                <a href={`mailto:${contactDetails.email}`} className="text-brand-accent hover:underline">
+                  {contactDetails.email}
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </section>

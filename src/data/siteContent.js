@@ -155,6 +155,7 @@ export const projectShowcase = [
     description:
       "Integrated Satellite Township on NH-65 HYD-VIJAYAWADA Highway near Gundrampally, Choutuppal. DTCP & RERA Approved 700 Acres layout with world-class amenities and free Clubhouse membership.",
     image: "/images/nature-valley-1.jpeg",
+    image2: "/images/nature-valley-2.jpeg",
     category: "DTCP & RERA Approved",
     location: "Choutuppal, NH-65 Highway",
     launchingSoon: false,
@@ -219,7 +220,7 @@ export const projectShowcase = [
   {
     title: "JB's Harmony Woods",
     description:
-      "Premium residential development on Srisilam Highway near Thummaloor in Future City. Strategically located project with modern amenities and excellent growth potential.",
+      "Premium residential development on Srisilam Highway near Thummaloor. Strategically located project with modern amenities and excellent growth potential.",
     image: "/images/harmony-woods-1.jpeg",
     image2: "/images/harmony-woods-2.jpeg",
     category: "Future City",

@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import SectionHeading from "../components/SectionHeading";
 import useInViewAnimation from "../hooks/useInViewAnimation";
-import { FaMapMarkerAlt, FaCheckCircle, FaBuilding, FaCertificate, FaHome, FaSwimmingPool, FaParking } from "react-icons/fa";
+import { contactDetails } from "../data/siteContent";
+import { FaMapMarkerAlt, FaCheckCircle, FaBuilding, FaCertificate, FaHome, FaSwimmingPool, FaParking, FaPhoneAlt, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 
 const heroBackground = "/images/serene-county-video.mp4";
 
@@ -318,6 +319,62 @@ const PropertySereneCounty = () => {
               >
                 View All Properties
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Connect With Us Section */}
+      <section className="fade-up mx-auto w-full max-w-6xl px-4 py-12 text-brand md:px-6 md:py-16 lg:px-10">
+        <div className="rounded-3xl bg-gradient-to-br from-brand-accent/10 via-white to-brand/10 p-8 border-2 border-brand-accent/20 shadow-[0_20px_60px_rgba(6,167,215,0.15)] md:p-12">
+          <div className="mx-auto max-w-3xl text-center space-y-6 md:space-y-8">
+            <div className="space-y-3">
+              <h2 className="text-2xl font-bold text-brand md:text-3xl lg:text-4xl">
+                Connect With Us For Best Properties
+              </h2>
+              <p className="text-sm text-brand/70 md:text-base max-w-2xl mx-auto">
+                Get in touch with our expert team to explore premium RERA-approved properties, schedule site visits, and find your dream home.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+              <a
+                href={`tel:${contactDetails.phonePrimary.replace(/\s+/g, "")}`}
+                className="group flex items-center gap-3 rounded-full bg-brand-accent px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-brand-accent/90 hover:shadow-[0_10px_30px_rgba(6,167,215,0.3)] md:px-8 md:py-3.5 md:text-base"
+              >
+                <FaPhoneAlt className="text-base" />
+                Call Now
+              </a>
+              <a
+                href={`https://wa.me/${contactDetails.phonePrimary.replace(/\s+/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#25D366]/90 hover:shadow-[0_10px_30px_rgba(37,211,102,0.3)] md:px-8 md:py-3.5 md:text-base"
+              >
+                <FaWhatsapp className="text-base" />
+                WhatsApp
+              </a>
+              <Link
+                to="/contact"
+                className="group flex items-center gap-3 rounded-full bg-white border-2 border-brand-accent px-6 py-3 text-sm font-semibold text-brand-accent transition-all duration-300 hover:bg-brand-accent hover:text-white hover:shadow-[0_10px_30px_rgba(6,167,215,0.2)] md:px-8 md:py-3.5 md:text-base"
+              >
+                <FaEnvelope className="text-base" />
+                Contact Form
+              </Link>
+            </div>
+
+            <div className="pt-4 border-t border-brand-accent/20">
+              <p className="text-xs text-brand/60 md:text-sm">
+                <strong className="text-brand">Phone:</strong>{" "}
+                <a href={`tel:${contactDetails.phonePrimary}`} className="text-brand-accent hover:underline">
+                  {contactDetails.phonePrimary}
+                </a>
+                {" | "}
+                <strong className="text-brand">Email:</strong>{" "}
+                <a href={`mailto:${contactDetails.email}`} className="text-brand-accent hover:underline">
+                  {contactDetails.email}
+                </a>
+              </p>
             </div>
           </div>
         </div>
